@@ -1,0 +1,18 @@
+
+
+.signup-form{
+    margin: 10% auto;
+    display: block;
+    width: 500px;
+    
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    background-color: azure;
+}
+input{
+    border: 16px solid #f2f2f2;
+   
+    
+}

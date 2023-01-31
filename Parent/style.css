@@ -1,0 +1,33 @@
+/* .signup-form{
+    margin: 10% auto;
+    display: block;
+    width: 500px;
+    
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    background-color: azure;
+}
+input{
+    border: 16px solid #f2f2f2;
+   
+    
+}
+<section class="signup-form">
+    <h2>Log in</h2>
+    <div class="signup-form-form">
+
+<form action="" method="POST">
+    
+<input type="text" name="uid" placeholder="Username/email.." required><br><br>
+
+<input type="password" name="pwd" placeholder="Password" required><br><br>
+
+   <button type="submit" name="submit">Login</button> 
+
+   <p>If you have no account?</p>
+<a href="signup.php">Sign up here!</a>
+</form>
+
+    </div> */
