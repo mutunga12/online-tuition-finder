@@ -26,12 +26,12 @@ session_start();
     
         <p  class="logo"></p>
         <nav class="nav-items">
-          <a href="#"style="font-size:2rem;font-weight:bold;">Home</a>
+          <a href=""style="font-size:2rem;font-weight:bold;">Home</a>
           <a href="#"style="font-size:2rem;font-weight:bold;">About</a>
           <a href=" "style="font-size:2rem;font-weight:bold;">Contact</a>
         
-          <a href=""style="font-size:2rem;font-weight:bold;">Student</a>
-          <a href="../Teacher/viewProfile.php"style="font-size:2rem;font-weight:bold;">Teacher</a>
+          <a href="../Parent/parentAcccount.php"style="font-size:2rem;font-weight:bold;">Student</a>
+          <a href="../Teacher/teacherB.php"style="font-size:2rem;font-weight:bold;">Teacher</a>
           <p id="demo"style="color:red;font-size:2rem;"></p>
           <p><a href=""><i class="fa fa-search"></i></a></p>
           

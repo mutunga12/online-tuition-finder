@@ -6,13 +6,15 @@
 <title> |Book session </title>
 	<link rel="stylesheet" href="main.css">
 </head>
+
 <body>
+
 <div class="header">
 				<ul>
 					<div class="float" style="font-size:20px">
+          <li><a href="teacherB.php">Your Dashboard</a></li>
 					<li><a href="../Home/login.php">Login</a></li>
 					<li><a href="../Home/index.php">Home</a></li>
-      
 					</div>
 				</ul>
 </div>
@@ -20,28 +22,30 @@
 	<div class="sucontainer">
 	<div class="split left">
   <div class="centered">
-  <label><b>Name:</b></label><br>
+  <label>Name:</label>
 		<input type="text" placeholder="Enter Full Name" name="fname" required><br>
-		<label><b>Gender</b></label><br>
+		<label>Gender</label><br>
 		<input type="radio" name="gender" value="female"required>Female
 		<input type="radio" name="gender" value="male">Male
 		<input type="radio" name="gender" value="other">Other<br><br>
-		
-		<label><b>Contact No:</b></label><br>
+		<label>Contact No:</label>
 		<input type="text" placeholder="Contact Number" name="contact" required maxlength="10" minlength="10"><br>
   </div>
 </div>
 <div class="split right">
-  
   <div class="centered">
-  	<br><br>
-  <label><b>Email Adress:</b></label><br>
+  	
+  <label>Email Adress:</label>
 		<input type="email" placeholder="Enter your email address" name="email" required maxlength="20" minlength="10"><br>
-		<label><b>Date:</b></label><br>
-		<input type="date" placeholder="Enter Date" name="dates" id="p1" required><br>
-		
-    <label><b>Message:</b></label><br>
-		<textarea name="texts" id="" cols="30" rows="10" maxlength="20"></textarea><br>
+    <label>Current Level of Study:</label>
+    <input type="text" placeholder="Current Level of Study" name="levels" required><br>
+    <label>Show your skills:</label>
+		<input type="text" placeholder="Enter   your skills" name="skills" required><br>
+
+		<div class="centered"style="">
+    <label>Describe Yourself:</label><br>
+		<textarea name="texts" id="" cols="30" rows="2" maxlength="20"></textarea><br>
+    </div>
 		<p style="color:white">If you have added your details go to <a href="../Home/index.php" style="color:blue">Home page</a>.</p><br>
 		<div class="container" style="background-color:grey">
 			<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
@@ -50,7 +54,6 @@
 </div>
 		</div>
   </div>
-  
 <?php 
 if(isset($_POST['submit'])){
    $db= mysqli_connect("localhost","root","","kabarak_db");
@@ -58,24 +61,23 @@ if(isset($_POST['submit'])){
 		$gender=$_POST['gender'];
 		$contact=$_POST['contact'];
 		$email=$_POST['email'];
-		$dates=$_POST['dates'];
+		$level=$_POST['levels'];
+    $skills=$_POST['skills'];
 		$texts=$_POST['texts'];
-  
-		$sql = "INSERT INTO booking (fname, gender, contact,email,dates,texts) VALUES ('$sname','$gender','$contact','$email',
-    '$dates','$texts') ";
+		$sql = "INSERT INTO add_biography (fullname, gender, contact,email,levelofstudy,skills,texts) VALUES ('$sname','$gender','$contact','$email',
+    '$level','$skills','$texts') ";
 	if (mysqli_query($db, $sql)) 
-     header( "Refresh:2; url=reschdule.php?msg= You have booked  succesfully");
+     header( "Refresh:2;AddDetails.php?msg=You have added to biography  succesfully");
 	{
     if(isset($_GET['msg'])){
       $msg=$_GET['msg'];
       echo '
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
   '.$msg.'
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
       ';}
-    echo "msg= You have booked  succesfully";
-    header( "Refresh:3; url=studentDashbord.php?msg= You have booked  succesfully");
+    echo "Not sent Try again";
+    // header( "Refresh:3; url=studentDashbord.php?msg= You have booked  succesfully");
 		//header( "Refresh:3; url=cover.php");
 	} 
 } 
@@ -85,7 +87,7 @@ if(isset($_POST['submit'])){
 <style>
   body, html {
 	
-  background: url("https://st2.depositphotos.com/1579454/6699/i/950/depositphotos_66997573-stock-photo-online-booking-concept.jpg") no-repeat center;
+  /* background: url("https://st2.depositphotos.com/1579454/6699/i/950/depositphotos_66997573-stock-photo-online-booking-concept.jpg") no-repeat center; */
     height: 100%;
     margin: 0;
 	background-position: 0 7px;
@@ -93,6 +95,9 @@ if(isset($_POST['submit'])){
 	background-size: cover;
 	position: relative;
 	font-family:verdana;
+background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
 }
 h1{
 	text-align:center;
@@ -139,13 +144,17 @@ li a:hover:not(.active) {
     background-color: #e0e0d1;
 }
 /* Full-width input fields */
-input[type=text], input[type=password], input[type=email] ,input[type=date], input[type=number]  {
+input[type=text], input[type=password], input[type=email] ,input[type=date], input[type=number]  textarea[type=texts] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    outline: none;
+}
+input:focus,textarea:focus,select:focus{
+  outline: none;
 }
 input[type=submit]
 {
@@ -161,6 +170,7 @@ input[type=submit]
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    outline: none;
 }
 option{
 	width: 100%;
@@ -248,7 +258,7 @@ img.avatar {
 	left:30%;
 	right:30%;
 	top:12%;
-	border:2px solid white;
+	/* border:2px solid white; */
 	border-collapse:collapse;
 	background:grey;
 }

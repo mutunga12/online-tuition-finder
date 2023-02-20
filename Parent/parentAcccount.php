@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="booking.php">
+                      <a href="booking.php">
                         <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
                         <span class="item">Booking</span>
                     </a>
@@ -81,7 +81,7 @@
                 <li>
                     <a href="signup.php">
                         <span class="icon"><i class="fas fa-cog"></i></span>
-                        <span class="item">signup</span>
+                        <span class="item">On demand</span>
                     </a>
                 </li>
             </ul>

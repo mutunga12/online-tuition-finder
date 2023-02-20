@@ -24,7 +24,6 @@ $db = mysqli_connect('localhost', 'root', '', 'kabarak_db');
 if (isset($_REQUEST['username'])) {
   // receive all input values from the form
   $username = stripslashes($_REQUEST['username']);
-  
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $email    = stripslashes($_REQUEST['email']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
@@ -32,16 +31,12 @@ if (isset($_REQUEST['username'])) {
   $phone=mysqli_real_escape_string($db, $_POST['phone']);
   $password = stripslashes($_REQUEST['password1']);
   $password_1 = mysqli_real_escape_string($db, $_POST['password1']);
-  //$password_2 = stripslashes($_REQUEST['password2']);
- // $password_2 = mysqli_real_escape_string($db, $_POST['password2']);
-  // form validation: ensure that the form is correctly filled ...
-  // by adding (array_push()) corresponding error unto $errors array
 
-  // first check the database to make sure 
-  // a user does not already exist with the same username and/or email
+
   $user_check_query = "SELECT * FROM reg_db WHERE fname='$username' AND email='$email' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_num_rows($result);
+  // if (!$dbc || mysqli_num_rows($dbc) == 0)
+ $user = mysqli_num_rows($result);
   if($user>0) {
       echo "<div class='form'style='text-align:center;color: red;'>
       <h3>Notice ! user already exist</h3><br/>
@@ -51,8 +46,8 @@ if (isset($_REQUEST['username'])) {
   // Finally, register user if there are no errors in the form
   else {
   	$password = md5($password_1);//encrypt the password before saving in the database
-  	$query = "INSERT INTO reg_db (fname, email,phone, passwords) 
-  			  VALUES('$username', '$email','$phone', '$password')";
+  	$query = "INSERT INTO reg_db (fname,phone, email, passwords) 
+  			  VALUES($username','$phone','$email', '$password')";
   	$results=mysqli_query($db, $query);
     if ($results) {
       echo "<div class='form-success'style='text-align:center;color: orange;'>
@@ -61,11 +56,10 @@ if (isset($_REQUEST['username'])) {
             </div>";
   } else {
       echo "<div class='form'>
-            <h3>Required fields are missing.</h3><br/>
+            <h3>Registration has Failed please register again aftersometimes.</h3><br/>
             <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
             </div>";
   }
-
   	// $_SESSION['fname'] = $username;
   	// $_SESSION['success'] = "You are now logged in";
     // header("Location: login.php");
