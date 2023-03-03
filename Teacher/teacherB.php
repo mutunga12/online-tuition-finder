@@ -1,3 +1,13 @@
+<?php
+
+session_start(); 
+  if (!isset($_SESSION['username'])) {
+  //	Redirect to user dashboard page
+    header("Location:../Parent/login.php");
+  exit();
+  }
+
+?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -24,9 +34,9 @@
         <div class="sidebar-content">
           <ul class="lists">
             <li class="list">
-              <a href="#" class="nav-link">
+              <a href="../Home/index.php" class="nav-link">
                 <i class="bx bx-home-alt icon"></i>
-                <span class="link">Dashboard</span>
+                <span class="link">Home</span>
               </a>
             </li>
             <li class="list">
@@ -36,7 +46,7 @@
               </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
+              <a href="notification.php" class="nav-link">
                 <i class="bx bx-bell icon"></i>
                 <span class="link">Notifications</span>
               </a>
@@ -69,12 +79,6 @@
           <div class="bottom-cotent">
             <li class="list">
               <a href="#" class="nav-link">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">Settings</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
                 <i class="bx bx-log-out icon"></i>
                 <span class="link">Logout</span>
               </a>
@@ -83,7 +87,23 @@
         </div>
       </div>
     </nav>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem error iste numquam omnis eaque autem, ullam ratione eum quidem officia enim aliquam totam odit voluptatum necessitatibus fuga, eius obcaecati vel!</p>
+    
+    <section class="home">
+     <div class="container">
+        <div class="row">
+            <div class="home-text">
+                 <h1>Welcome </h1>
+                 <p class="animate-text">
+                    <span>Press The Menue Button</span>
+                    <span>Navigate through The Items</span>
+                    <span>Check if You Have Notifications</span>
+                    <span>Check number of work Assigned</span>
+                    <span>WE APPRECIATE FOR YOUR TIME</span>
+                 </p>
+            </div>
+        </div>
+     </div>
+ </section>
     <section class="overlay"></section>
     <script>
       const navBar = document.querySelector("nav"),
@@ -97,6 +117,41 @@
       overlay.addEventListener("click", () => {
         navBar.classList.remove("open");
       });
+
+
+
+
+      // 
+     
+         const txts=document.querySelector(".animate-text").children,
+               txtsLen=txts.length;
+           let index=0;
+          const textInTimer=3000,
+                textOutTimer=2800;
+
+         function animateText() {
+            for(let i=0; i<txtsLen; i++){
+              txts[i].classList.remove("text-in","text-out");  
+            }
+            txts[index].classList.add("text-in");
+
+            setTimeout(function(){
+                txts[index].classList.add("text-out");              
+            },textOutTimer)
+
+            setTimeout(function(){
+
+              if(index == txtsLen-1){
+                  index=0;
+                }
+               else{
+                   index++;
+                 }
+                animateText();
+            },textInTimer); 
+         }
+         
+         window.onload=animateText;
     </script>
 </body>
 <style>
@@ -114,7 +169,13 @@ p{
 }
 body {
   min-height: 100%;
-  background: #e3f2fd;
+  background-image: linear-gradient(45deg,
+              rgba(245,70,66, 0.75),
+              rgba(8,83,156, 0.75)),url('pexels-photo-919278.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+  
 }
 nav {
   position: fixed;
@@ -126,6 +187,7 @@ nav {
   align-items: center;
   background: #fff;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 nav .logo {
   display: flex;
@@ -208,6 +270,89 @@ nav.open ~ .overlay {
   opacity: 1;
   left: 260px;
   pointer-events: auto;
+}
+
+
+/*  */
+
+
+.container{
+ 	max-width: 1170px;
+ 	width: 100%;
+ 	margin:auto;
+ }
+
+ .home{
+ 	height: 100vh;
+ 	background-image: url("images/bg.jpg");
+ 	background-size: cover;
+ 	background-position: center;
+ 	display: flex;
+ 	flex-wrap: wrap;
+ 	padding:50px 15px;
+ 	position: relative;
+ }
+ .home::before{
+ 	content: '';
+ 	position: absolute;
+ 	left:0;
+ 	top:0;
+ 	width: 100%;
+ 	height: 100%;
+ 	background-color: rgba(0,0,0,0.8);
+ 	z-index: 1;
+ }
+
+ .home .home-text{
+ 	text-align: center;
+ 	position: relative;
+ 	z-index: 2;
+ }
+
+.home .home-text h1{
+	color:#ffffff;
+	font-size: 50px;
+	color:#ffffff;
+	line-height: 56px;
+	font-weight: 700;
+	margin:0 0 20px;
+}
+.home .home-text p{
+	margin:0;
+	overflow: hidden;
+}
+.home .home-text p span{
+    font-size: 40px;
+    color:#ff2c45;
+    font-weight: 700;
+    display: inline-block;
+    line-height: 46px;
+    display: none;
+}
+
+.home .home-text p span.text-in{
+	display: block;
+	animation: textIn .5s ease;
+}
+.home .home-text p span.text-out{
+	animation: textOut .5s ease;
+}
+@keyframes textIn{
+	0%{
+		transform: translateY(100%);
+	}
+	100%{
+		transform: translateY(0%);
+	}
+}
+@keyframes textOut{
+	0%{
+		transform: translateY(0%);
+	}
+	100%{
+		transform: translateY(-100%);
+
+	}
 }
 
 </style>

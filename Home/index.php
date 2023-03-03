@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+  //	Redirect to user dashboard page
+    header("Location:../Parent/login.php");
+exit();
+}
 ?>
 <html lang="en">
 <head>

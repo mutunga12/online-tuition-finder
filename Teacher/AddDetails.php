@@ -13,7 +13,7 @@
 				<ul>
 					<div class="float" style="font-size:20px">
           <li><a href="teacherB.php">Your Dashboard</a></li>
-					<li><a href="../Home/login.php">Login</a></li>
+					<li><a href="../Parent/login.php">Login</a></li>
 					<li><a href="../Home/index.php">Home</a></li>
 					</div>
 				</ul>
@@ -36,7 +36,7 @@
   <div class="centered">
   	
   <label>Email Adress:</label>
-		<input type="email" placeholder="Enter your email address" name="email" required maxlength="20" minlength="10"><br>
+		<input type="email" placeholder="Enter your email address" name="email" required ><br>
     <label>Current Level of Study:</label>
     <input type="text" placeholder="Current Level of Study" name="levels" required><br>
     <label>Show your skills:</label>
@@ -44,7 +44,7 @@
 
 		<div class="centered"style="">
     <label>Describe Yourself:</label><br>
-		<textarea name="texts" id="" cols="30" rows="2" maxlength="20"></textarea><br>
+		<textarea name="texts" id="" cols="30" rows="2" ></textarea><br>
     </div>
 		<p style="color:white">If you have added your details go to <a href="../Home/index.php" style="color:blue">Home page</a>.</p><br>
 		<div class="container" style="background-color:grey">
@@ -56,7 +56,7 @@
   </div>
 <?php 
 if(isset($_POST['submit'])){
-   $db= mysqli_connect("localhost","root","","kabarak_db");
+   $db= mysqli_connect("localhost","root","","tuition_db");
 		$sname=$_POST['fname'];
 		$gender=$_POST['gender'];
 		$contact=$_POST['contact'];
@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
 <style>
   body, html {
 	
-  /* background: url("https://st2.depositphotos.com/1579454/6699/i/950/depositphotos_66997573-stock-photo-online-booking-concept.jpg") no-repeat center; */
+   background: url("https://st2.depositphotos.com/1579454/6699/i/950/depositphotos_66997573-stock-photo-online-booking-concept.jpg") no-repeat center; */
     height: 100%;
     margin: 0;
 	background-position: 0 7px;
